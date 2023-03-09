@@ -20,7 +20,7 @@ dpi = 300
 project_dir = os.getcwd()
 
 # Import data set:
-df = pd.read_csv('/Users/kienguyen/Documents/Regis/MSDS/04. MSDS670_X40_Data Visualization/08. Week 8/Data/Fastfood in US/Datafiniti_Fast_Food_Restaurants.csv', sep=',')
+df = pd.read_csv('/Users/kienguyen/Documents/Data/Fastfood in US/Datafiniti_Fast_Food_Restaurants.csv', sep=',')
 df.info()
 #%%
 # Do the EDA on the data set
@@ -130,7 +130,7 @@ fig.savefig(project_dir + "/Chart/"+ plot3_name, dpi = dpi)
 
 # Plot 4: Store Density 
 plot_province =pd.DataFrame({'STUSPS': province,'store':province_count})
-states = gpd.read_file('/Users/kienguyen/Documents/Regis/MSDS/04. MSDS670_X40_Data Visualization/08. Week 8/Data/cb_2018_us_state_20m/cb_2018_us_state_20m.shp')
+states = gpd.read_file('/Users/kienguyen/Documents/Data/cb_2018_us_state_20m/cb_2018_us_state_20m.shp')
 plot_merge=plot_province.merge(states,on='STUSPS')
 plot_merge = plot_merge.rename(columns= {'STUSPS': 'state','store':'number_of_store'})
 fig = px.choropleth(plot_merge, locations='state',
@@ -153,7 +153,7 @@ fig.show()
 
 # PLOT 5: Top 5 Brand distribution around the US
 # import US map:
-states = gpd.read_file('/Users/kienguyen/Documents/Regis/MSDS/04. MSDS670_X40_Data Visualization/08. Week 8/Data/cb_2018_us_state_20m/cb_2018_us_state_20m.shp')
+states = gpd.read_file('/Users/kienguyen/Documents/Data/cb_2018_us_state_20m/cb_2018_us_state_20m.shp')
 states = states.to_crs("EPSG:4326")
 not_mainland = ['Alaska', 'Hawaii', "Puerto Rico"]
 mainland_usa = states.query('NAME not in @not_mainland')
